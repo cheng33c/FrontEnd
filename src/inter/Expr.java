@@ -40,6 +40,8 @@ public class Expr extends Node {
 	else if ( f != 0 ) {
 	    emit("iffalse " + test + " goto L" + f);
 	}
+	else
+	    ; // Don't construct any instruction
     }
 
     public String toString() {
