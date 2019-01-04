@@ -10,7 +10,9 @@ public class Lexer {
     char peek = ' ';
     Hashtable words = new Hashtable();
 
-    void reverse(Word w) { words.put(w.lexeme, w); }
+    void reverse(Word w) {
+	words.put(w.lexeme, w);
+    }
     
     public Lexer() {
 	reverse( new Word("if",   Tag.IF) );
