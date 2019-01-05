@@ -6,7 +6,7 @@ public class Stmt extends Node {
 
     public static Stmt Null = new Stmt();
 
-    //the arguments is the label of start and next instruction
+    //the arguments is the label of start and after instruction
     public void gen(int b, int a) {}
 
     // record the label of next instruction

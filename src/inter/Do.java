@@ -8,16 +8,22 @@ public class Do extends Stmt {
     Stmt stmt;
 
     public Do() {
-	expr = null;
-	stmt = null;
+        expr = null;
+        stmt = null;
     }
 
     public void init(Stmt s, Expr x) {
-	expr = x;
-	stmt = s;
-	if ( expr.type != Type.Bool )
-	    expr.error("boolean required in do");
+        expr = x;
+        stmt = s;
+        if ( expr.type != Type.Bool )
+            expr.error("boolean required in do");
     }
 
-    
+    public void gen(int b, int a) {
+        after = a;
+        int label = newlabel(); // label of expr
+        stmt.gen(b, label);
+        emitlabel(label);
+        expr.jumping(b, 0);
+    }
 }

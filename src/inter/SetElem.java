@@ -9,28 +9,28 @@ public class SetElem extends Stmt {
     public Expr index, expr;
 
     public SetElem(Access x, Expr y) {
-	array = x.array;
-	index = x.index;
-	expr = y;
+		array = x.array;
+		index = x.index;
+		expr = y;
 
-	if ( check(x.type, y.type) == null )
-	    return error("type error");
+		if ( check(x.type, y.type) == null )
+			error("type error");
     }
 
     public Type check(Type p1, Type p2) {
-	if ( p1 instanceof Array || p2 instanceof Array )
-	    return null;
-	else if ( p1 == p2 )
-	    return p2;
-	else if ( Type.numeric(p1) && Type.numeric(p2) )
-	    return p2;
-	else
-	    return null;
+		if ( p1 instanceof Array || p2 instanceof Array )
+			return null;
+		else if ( p1 == p2 )
+			return p2;
+		else if ( Type.numeric(p1) && Type.numeric(p2) )
+			return p2;
+		else
+			return null;
     }
 
     public void gen(int b, int a) {
-	String s1 = index.reduce().toString();
-	String s2 = expr.reduce().toString();
-	emit(array.toString() + " [" + s1 + "] = " + s2);
+		String s1 = index.reduce().toString();
+		String s2 = expr.reduce().toString();
+		emit(array.toString() + " [" + s1 + "] = " + s2);
     }
 }
